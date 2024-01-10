@@ -1,12 +1,13 @@
 import  express  from "express";
-import * as bookController from "../Controllers/cake.js";
+import * as cakeController from "../Controllers/cake.js";
+import { auth } from "../middlwares/auth.js";
 
 const router=express.Router();
 
-router.get("/",bookController.getAllCakes);
-router.get("/:cakeid",bookController.getCakeById);
-router.delete("/:id",bookController.deleteCakeById);
-router.put("/:id",bookController.updateCake);
-router.post("/",bookController.addCake);
+router.get("/",cakeController.getAllCakes);
+router.get("/:cakeid",cakeController.getCakeById);
+router.delete("/:id",cakeController.deleteCakeById);
+router.put("/:id",cakeController.updateCake);
+router.post("/",auth,cakeController.addCake);
 
 export default router;
